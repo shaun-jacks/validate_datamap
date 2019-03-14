@@ -16,7 +16,12 @@ def HasTwoSlashes(mydate):
 # Checks if my_char could be a number 
 def IsCharNumber(my_char):
     assert(my_char.dtype == 'object'), 'my_char must be an object dtype'
-    return(my_char.str.contains('[-0123456789\\.]', regex = True))
+    # trim trailing and leading whitespace
+    my_char = my_char.str.strip()
+    # define what is not a number
+    not_number = my_char.str.contains('[^-01234567889\\.]', regex=True, na=True) 
+    is_number = ~not_number
+    return(is_number)
 
 ## character_clean ##
 # Cleans characters by blanks to nas and coercing into string dtypes 
@@ -62,8 +67,5 @@ def Is_YMD_Date(mydate):
         string_len_matches & val_ranges_match))
     
     return(is_ymd)
-
-
-
 
 
