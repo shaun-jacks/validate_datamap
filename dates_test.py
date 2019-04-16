@@ -5,11 +5,11 @@ import numpy as np
 #### create helper functions ####
 ## HasTwoDashes ##
 def HasTwoDashes(mydate):
-    return(mydate.str.count('-') == 2)
+    return mydate.str.count('-') == 2
 
 ## HasTwoSlashes ##
 def HasTwoSlashes(mydate):
-    return(mydate.str.count('/') == 2)
+    return mydate.str.count('/') == 2
 
 
 ## IsCharNumber ##
@@ -21,7 +21,7 @@ def IsCharNumber(my_char):
     # define what is not a number
     not_number = my_char.str.contains('[^-01234567889\\.]', regex=True, na=True) 
     is_number = ~not_number
-    return(is_number)
+    return is_number
 
 ## character_clean ##
 # Cleans characters by blanks to nas and coercing into string dtypes 
@@ -29,7 +29,7 @@ def IsCharNumber(my_char):
 def character_clean(mydate):
     mydate = mydate.replace(r'', np.nan, regex=True)
     mydate = mydate.str.strip()
-    return(mydate)
+    return mydate
 
 #### Is_YMD_Date ####
 def Is_YMD_Date(mydate):
@@ -66,6 +66,6 @@ def Is_YMD_Date(mydate):
     is_ymd = ((missing_dates) | (has_two_slashes_dashes & has_numbers & \
         string_len_matches & val_ranges_match))
     
-    return(is_ymd)
+    return is_ymd
 
 
